@@ -71,7 +71,7 @@ public class Rocket : MonoBehaviour
         }
         else if (collision.transform.CompareTag("Finish"))
         {
-            print("Вызов функции финиша!");
+            StartCoroutine(LoadNextLevel());
         }
         else
         {
@@ -104,5 +104,13 @@ public class Rocket : MonoBehaviour
     {
         int levelIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(levelIndex);
+    }
+
+    IEnumerator LoadNextLevel()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        int levelIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(levelIndex + 1);
     }
 }
