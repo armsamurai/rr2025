@@ -7,20 +7,37 @@ using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour
 {
     Rigidbody rb;
-
-    [SerializeField] float thrustForce = 20f;
-    [SerializeField] float rotateForce = 5f;
-
-    public GameObject[] rocketParts;
+    AudioSource au;
+    GameObject[] rocketParts;
 
     bool isFly = true;
 
+    [Header("Мощность тяги")]
+    [SerializeField] float thrustForce = 20f;
+    [Header("Скорость разворота")]
+    [SerializeField] float rotateForce = 5f;
+    [Space]
+
+    [Header("Explosion params")]
     [SerializeField] float explosionForce = 100f;
     [SerializeField] float explosionRadius = 5f;
+    [Space]
+
+    [Header("Sounds")]
+    [SerializeField] AudioClip winSFX;
+    [SerializeField] AudioClip destroySFX;
+    [Space]
+
+    [Header("Effects")]
+    [SerializeField] ParticleSystem leftEngineVFX;
+    [SerializeField] ParticleSystem rightEngineVFX;
+    //[SerializeField] ParticleSystem winVFX;
+    //[SerializeField] ParticleSystem destroyVFX;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        au = GetComponent<AudioSource>();
 
         rocketParts = new GameObject[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
@@ -43,6 +60,18 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             rb.AddRelativeForce(0, thrustForce, 0);
+            if (!au.isPlaying)
+            {
+                au.Play();
+                leftEngineVFX.Play();
+                rightEngineVFX.Play();
+            }
+        }
+        else
+        {
+            au.Stop();
+            leftEngineVFX.Stop();
+            rightEngineVFX.Stop();
         }
     }
 
@@ -82,6 +111,11 @@ public class Rocket : MonoBehaviour
     IEnumerator Explode()
     {
         isFly = false;
+        au.Stop();
+        au.PlayOneShot(destroySFX);
+        leftEngineVFX.Stop();
+        rightEngineVFX.Stop();
+        //destroyVFX.Play();
 
         foreach (GameObject part in rocketParts)
         {
@@ -108,6 +142,12 @@ public class Rocket : MonoBehaviour
 
     IEnumerator LoadNextLevel()
     {
+        isFly = false;
+        au.Stop();
+        au.PlayOneShot(winSFX);
+        leftEngineVFX.Stop();
+        rightEngineVFX.Stop();
+        //winSFX.Play();
         yield return new WaitForSeconds(2f);
         
         int levelIndex = SceneManager.GetActiveScene().buildIndex;
