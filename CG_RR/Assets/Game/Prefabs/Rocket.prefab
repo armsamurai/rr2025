@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4306075521119417206}
   - component: {fileID: 6879788204703246408}
   - component: {fileID: 5669760108382165543}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftEngine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1601138896122002293}
   - component: {fileID: 5920690972196221230}
   - component: {fileID: 4281187605142664058}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightEngineVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4936,6 +4936,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &3261250156711674737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9102164825291344087}
+  m_Layer: 6
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9102164825291344087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261250156711674737}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7196888880611973786}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3414366202941367807
 GameObject:
   m_ObjectHideFlags: 0
@@ -4948,7 +4979,8 @@ GameObject:
   - component: {fileID: 6743341078599563819}
   - component: {fileID: 4746728231530247896}
   - component: {fileID: 6150759090958431221}
-  m_Layer: 0
+  - component: {fileID: 7105933644003808300}
+  m_Layer: 6
   m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4974,6 +5006,7 @@ Transform:
   - {fileID: 4024500418024656048}
   - {fileID: 3777872939457310831}
   - {fileID: 8314776479245523955}
+  - {fileID: 9102164825291344087}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6743341078599563819
@@ -5121,6 +5154,21 @@ MonoBehaviour:
   rightEngineVFX: {fileID: 5920690972196221230}
   winVFX: {fileID: 6521621405266717595}
   destroyVFX: {fileID: 2973286252094871713}
+--- !u!114 &7105933644003808300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3414366202941367807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49d49d8d4d3bbf49b245bf38b16f9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 2173278073369781628, guid: b0e87c1fe66fe6149b83ed39dbc50b75, type: 3}
+  firePoint: {fileID: 9102164825291344087}
+  projectileSpeed: 35
 --- !u!1 &5985617330921511468
 GameObject:
   m_ObjectHideFlags: 0
@@ -5132,7 +5180,7 @@ GameObject:
   - component: {fileID: 8314776479245523955}
   - component: {fileID: 6521621405266717595}
   - component: {fileID: 2855234958730821202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WinVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10021,7 +10069,7 @@ GameObject:
   - component: {fileID: 4025793471250594594}
   - component: {fileID: 2413705922369421300}
   - component: {fileID: 4314753103442299427}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10125,7 +10173,7 @@ GameObject:
   - component: {fileID: 6350459304697631667}
   - component: {fileID: 3111421257205228962}
   - component: {fileID: 3227416935149962939}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftEngineVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14956,7 +15004,7 @@ GameObject:
   - component: {fileID: 6525604868626940594}
   - component: {fileID: 7967902157078423571}
   - component: {fileID: 7767536567748976259}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15061,7 +15109,7 @@ GameObject:
   - component: {fileID: 6018019243089609872}
   - component: {fileID: 1971796743865583014}
   - component: {fileID: 8534322889581080041}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightEngine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15166,7 +15214,7 @@ GameObject:
   - component: {fileID: 3777872939457310831}
   - component: {fileID: 2973286252094871713}
   - component: {fileID: 1010468691726439628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DestroyVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

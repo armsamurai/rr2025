@@ -153,4 +153,9 @@ public class Rocket : MonoBehaviour
         int levelIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(levelIndex + 1);
     }
+
+    public bool GetIsFly()
+    {
+        return isFly;
+    }
 }
