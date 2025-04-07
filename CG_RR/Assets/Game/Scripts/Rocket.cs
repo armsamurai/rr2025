@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -108,6 +109,24 @@ public class Rocket : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "ShootBooster")
+        {
+            float power = other.GetComponent<Booster>().power;
+            float duration = other.GetComponent<Booster>().duration;
+            StartCoroutine(GetComponent<RocketShoot>().ShootBoost(power, duration));
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.tag == "ThrustBooster")
+        {
+            float power = other.GetComponent<Booster>().power;
+            float duration = other.GetComponent<Booster>().duration;
+            StartCoroutine(ThrustBooster(power, duration));
+            Destroy(other.gameObject);
+        }
+    }
+
     IEnumerator Explode()
     {
         isFly = false;
@@ -124,6 +143,7 @@ public class Rocket : MonoBehaviour
             Rigidbody _prb = part.AddComponent<Rigidbody>();
             if (_prb != null)
             {
+                _prb.gameObject.layer = 0;
                 _prb.isKinematic = false;
                 _prb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             }
@@ -157,5 +177,13 @@ public class Rocket : MonoBehaviour
     public bool GetIsFly()
     {
         return isFly;
+    }
+
+    IEnumerator ThrustBooster(float newThrustForce, float duration)
+    {
+        float currentThrustForce = thrustForce;
+        thrustForce *= newThrustForce;
+        yield return new WaitForSeconds(duration);
+        thrustForce = currentThrustForce;
     }
 }

@@ -8,6 +8,9 @@ public class RocketShoot : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] float projectileSpeed = 20f;
 
+    [SerializeField] float fireRate = 10f;
+    float nextFireTime;
+
     Rocket rocket;
 
     void Start()
@@ -19,9 +22,10 @@ public class RocketShoot : MonoBehaviour
     void Update()
     {
         if (!rocket.GetIsFly()) return;
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && Time.time >= nextFireTime)
         {
             Shoot();
+            nextFireTime = Time.time + 1f / fireRate;
         }
     }
 
@@ -32,4 +36,12 @@ public class RocketShoot : MonoBehaviour
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.velocity = firePoint.up * projectileSpeed;
     }    
+
+    public IEnumerator ShootBoost(float newFireRate, float duration)
+    {
+        float currentFireFate = fireRate;
+        fireRate *= newFireRate;
+        yield return new WaitForSeconds(duration);
+        fireRate = currentFireFate;
+    }
 }
